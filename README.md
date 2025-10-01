@@ -11,6 +11,7 @@ Além disso, estão definidos manifests para duas aplicações exemplo: conversa
 
 ## **📂 Estrutura do projeto**
 
+```text
 k8s/
 ├─ cluster/                     # Configurações de cluster
 │  ├─ kind-config.yaml
@@ -34,6 +35,7 @@ k8s/
    ├─ ingress/
    ├─ network/
    └─ secrets/
+```
 
 ## **🌐 Criação do cluster**
 
