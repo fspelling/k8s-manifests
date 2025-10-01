@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgreesql
+  namespace: kube-news
+spec:
+  selector:
+    matchLabels:
+      app: postgreesql
+  serviceName: postgreesql
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: postgreesql
+    spec:
+      containers:
+      - name: container-postgreesql
+        image: postgres:15.0
+        ports:
+        - containerPort: 5432
+        envFrom:
+            - configMapRef:
+                name: kubenews
+            - secretRef:
+                name: kubenews
+        env:
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: postgree-vol
+          mountPath: /var/lib/postgresql/data/pgdata
+  volumeClaimTemplates:
+  - metadata:
+      name: postgree-vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

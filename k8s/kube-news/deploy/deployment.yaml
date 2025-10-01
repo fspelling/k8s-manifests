@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubenews
+  namespace: kube-news
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubenews
+  template:
+    metadata:
+      labels:
+        app: kubenews
+    spec:
+      containers:
+        - name: container-kubenews
+          image: fspelling/kube-news:latest
+          envFrom:
+            - configMapRef:
+                name: kubenews
+            - secretRef:
+                name: kubenews
+          resources:
+            requests:
+              cpu: "0.2"
+              memory: 64Mi
+            limits:
+              cpu: "500m"
+              memory: 512Mi
+          ports:
+            - containerPort: 8080

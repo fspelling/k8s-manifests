@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: postgreesql
+  namespace: kube-news
+spec:
+  podSelector:
+    matchLabels:
+      app: postgreesql
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: kubenews
+      ports:
+        - port: 5432
+          protocol: TCP

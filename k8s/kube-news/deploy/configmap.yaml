@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubenews
+  namespace: kube-news
+data:
+  DB_DATABASE: "kubenews"
+  DB_USERNAME: "kubenews"
+  DB_HOST: "postgreesql"
