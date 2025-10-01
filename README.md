@@ -1,4 +1,4 @@
-# **🚀 Ambiente Kubernetes com Kind**
+# **🚀 Estrutura de um ambiente Kubernetes**
 
 Este repositório contém a configuração para criar um cluster Kubernetes local com Kind, utilizando Calico como CNI, Ingress Controller (NGINX) e Metrics Server.
 Além disso, estão definidos manifests para duas aplicações exemplo: conversao-temperatura e kube-news (com banco de dados).
